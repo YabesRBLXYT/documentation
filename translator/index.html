@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - Translate Service</title>
+    <style>
+        /* Body dan latar belakang */
+        body {
+            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+            font-family: 'Arial', sans-serif;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Judul utama dengan efek neon */
+        header {
+            text-align: center;
+            background: #000;
+            padding: 20px 0;
+            color: #0ff;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 50px #0ff;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #aaa;
+        }
+
+        /* Container untuk konten utama */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #121212;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        /* Judul bagian */
+        h2 {
+            color: #ff0;
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;
+        }
+
+        /* Note bergaya neon */
+        .note {
+            background: rgba(255, 255, 0, 0.1);
+            border-left: 5px solid #ff0;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1em;
+            box-shadow: 0 0 10px #ff0;
+        }
+
+        /* List styling */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            color: #0ff;
+            font-size: 1em;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Perbaikan tata letak Endpoints dan Response */
+        .endpoints pre, .parameters pre {
+            white-space: pre-wrap; /* Membuat teks tetap rapi */
+            background-color: #1a1a1a;
+            color: #0ff;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        /* Tombol kontak */
+        .contact {
+            text-align: center; /* Pusatkan tombol */
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0ff;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 0 15px #0ff, 0 0 25px #0ff;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background: #fff;
+            color: #0ff;
+            text-shadow: 0 0 15px #0ff;
+            box-shadow: 0 0 25px #fff, 0 0 35px #0ff;
+        }
+
+        /* API Test Section */
+        .api-test-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
+        }
+
+        footer a {
+            color: #0ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-shadow: 0 0 5px #0ff;
+        }
+      /* Perbaikan untuk input dan select */form select,
+form input[type="text"] {
+    width: 100%;
+    padding: 10px; /* Tambahkan padding agar sejajar */
+    background: #1a1a1a;
+    color: #0ff;
+    border: 1px solid #0ff;
+    border-radius: 5px;
+    box-sizing: border-box; /* Pastikan padding tidak mengubah ukuran elemen */
+    font-size: 1em; /* Samakan ukuran font */
+    font-family: 'Arial', sans-serif; /* Samakan font agar konsisten */
+}
+form button {    display: block; /* Ubah tombol menjadi elemen blok */
+    margin: 20px auto; /* Pusatkan tombol secara horizontal */
+    padding: 10px;
+    background: #0ff;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-shadow: 0 0 10px #0ff;
+    box-shadow: 0 0 10px #0ff;
+    cursor: pointer;
+    font-size: 1em;
+    width: auto; /* Pastikan ukuran lebar tombol menyesuaikan isinya */
+}
+
+form button:hover {
+    background: #fff;
+    color: #0ff;
+    text-shadow: 0 0 15px #0ff;
+    box-shadow: 0 0 20px #fff, 0 0 25px #0ff;
+}
+      
+      
+    </style>
+</head>
+<body>
+    <header>
+        API Documentation  
+        <p>Translate Service by Yabes</p>
+    </header>
+        <p>Base URL: https://yabes-desu.serv00.net/translate <p>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Introduction</h2>
+            <p>Welcome to the Translate Service API. This service enables effortless text translation between languages using various endpoints and parameters.</p>
+            <div class="note">
+                <strong>Note:</strong> This API is free to use and may take some time to process. Please be patient!
+            </div>
+        </div>
+        <h2>Server 1 - Main API</h2>
+        <h2>Endpoints</h2>
+        <p>Available API endpoints:</p>
+        <ul class="endpoints">
+            <li><strong>GET:</strong> <pre>/api?text=Hello&fr=en&to=id</pre></li>
+            <li><strong>POST:</strong> Send <pre>text, fr, and to</pre> parameters to <pre>/api</pre></li>
+        </ul>
+
+        <h2>Parameters</h2>
+        <ul class="parameters">
+            <li><pre>text</pre>: The text to be translated (String).</li>
+            <li><pre>fr</pre>: Source language code (e.g., "en").</li>
+            <li><pre>to</pre>: Target language code (e.g., "id").</li>
+        </ul>
+
+        <h2>Response</h2>
+        <p>The API returns a JSON object in the following format:</p>
+        <pre>
+{
+    "success": true,
+    "translated_text": "Translated text here",
+    "credit": "t.me/Yabes_Desu"
+}
+        </pre>
+        
+        <!-- Bagian "Translation Test" -->
+        <div class="api-test-section" style="background: #121212; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);">
+            <h2 style="color: #ff0; text-align: center; text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;">Translation Test</h2>
+            <h4 style="color: #ff0; text-align: center; text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;">Server 1</h4>
+            <form id="api-test-form" style="display: flex; flex-direction: column; gap: 15px; margin-top: 10px;">
+                <!-- Form untuk Translation Test -->
+                <div>
+                    <label for="from-language" style="color: #0ff; font-weight: bold; display: block; margin-bottom: 5px;">From:</label>
+                    <select id="from-language" name="from" style="width: 100%; padding: 8px; background: #1a1a1a; color: #0ff; border: 1px solid #0ff; border-radius: 5px;">
+            <option value="af">Afrikaans</option>
+            <option value="sq">Albanian</option>
+            <option value="am">Amharic</option>
+            <option value="ar">Arabic</option>
+            <option value="hy">Armenian</option>
+            <option value="az">Azerbaijani</option>
+            <option value="eu">Basque</option>
+            <option value="be">Belarusian</option>
+            <option value="bn">Bengali</option>
+            <option value="bs">Bosnian</option>
+            <option value="bg">Bulgarian</option>
+            <option value="ca">Catalan</option>
+            <option value="ceb">Cebuano</option>
+            <option value="ny">Chichewa</option>
+            <option value="zh-CN">Chinese</option>
+            <option value="co">Corsican</option>
+            <option value="hr">Croatian</option>
+            <option value="cs">Czech</option>
+            <option value="da">Danish</option>
+            <option value="nl">Dutch</option>
+            <option value="en">English</option>
+            <option value="eo">Esperanto</option>
+            <option value="et">Estonian</option>
+            <option value="tl">Filipino</option>
+            <option value="fi">Finnish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="el">Greek</option>
+            <option value="hi">Hindi</option>
+            <option value="id">Indonesian</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="ms">Malay</option>
+            <option value="pt">Portuguese</option>
+            <option value="ru">Russian</option>
+            <option value="es">Spanish</option>
+            <option value="th">Thai</option>
+            <option value="tr">Turkish</option>
+            <option value="vi">Vietnamese</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="to-language" style="color: #0ff; font-weight: bold; display: block; margin-bottom: 5px;">To:</label>
+                    <select id="to-language" name="to" style="width: 100%; padding: 8px; background: #1a1a1a; color: #0ff; border: 1px solid #0ff; border-radius: 5px;">
+            <option value="af">Afrikaans</option>
+            <option value="sq">Albanian</option>
+            <option value="am">Amharic</option>
+            <option value="ar">Arabic</option>
+            <option value="hy">Armenian</option>
+            <option value="az">Azerbaijani</option>
+            <option value="eu">Basque</option>
+            <option value="be">Belarusian</option>
+            <option value="bn">Bengali</option>
+            <option value="bs">Bosnian</option>
+            <option value="bg">Bulgarian</option>
+            <option value="ca">Catalan</option>
+            <option value="ceb">Cebuano</option>
+            <option value="ny">Chichewa</option>
+            <option value="zh-CN">Chinese</option>
+            <option value="co">Corsican</option>
+            <option value="hr">Croatian</option>
+            <option value="cs">Czech</option>
+            <option value="da">Danish</option>
+            <option value="nl">Dutch</option>
+            <option value="en">English</option>
+            <option value="eo">Esperanto</option>
+            <option value="et">Estonian</option>
+            <option value="tl">Filipino</option>
+            <option value="fi">Finnish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="el">Greek</option>
+            <option value="hi">Hindi</option>
+            <option value="id">Indonesian</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="ms">Malay</option>
+            <option value="pt">Portuguese</option>
+            <option value="ru">Russian</option>
+            <option value="es">Spanish</option>
+            <option value="th">Thai</option>
+            <option value="tr">Turkish</option>
+            <option value="vi">Vietnamese</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="text-input" style="color: #0ff; font-weight: bold; display: block; margin-bottom: 5px;">Text:</label>
+                    <input type="text" id="text-input" name="text" placeholder="Enter text to translate">
+                </div>
+                <button type="submit">Translate</button>
+            </form>
+            <div id="api-response" style="margin-top: 20px; padding: 15px; background: #1a1a1a; color: #0ff; border: 1px solid #0ff; border-radius: 5px; display: none;"></div>
+        </div>
+
+        <h2>Server 2 - Alternative API</h2>
+        <p>Faster, but the meaning is often wrong</p>
+        <ul class="endpoints">
+            <li><strong>GET:</strong> <pre>/api2?text=Example&fr=en&to=id</pre></li>
+            <li><strong>POST:</strong> Send <pre>text, fr, and to</pre> parameters to <pre>/api2</pre></li>
+        </ul>
+
+        <h2>Parameters Explained</h2>
+        <ul class="parameters">
+            <li><pre>text</pre>: The text to be translated. This is required and must be a string (e.g., "Hello").</li>
+            <li><pre>fr</pre>: The source language code (e.g., "en" for English). This is required.</li>
+            <li><pre>to</pre>: The target language code (e.g., "id" for Indonesian). This is required.</li>
+            <li><pre>tr</pre>: (Optional) Specifies which translation result to display.
+
+
+                <ul>
+                    <li>If <pre>tr=1</pre>, the response will return the primary translation (usually the most accurate).</li>
+                    <li>If <pre>tr=2</pre>, the response will return the second translation (if available).</li>
+                    <li>If <pre>tr</pre> is not provided or the requested translation index is unavailable, it defaults to <pre>tr=1</pre>.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Response Explained</h2>
+        <p>The API response from Server 2 returns a JSON object structured as follows:</p>
+        <pre>
+{
+    "success": true,
+    "translated_text": "Translated text from Server 2",
+    "amount_translate": 2,
+    "credit": "t.me/Yabes_Desu"
+}
+        </pre>
+        <ul class="parameters">
+            <li><pre>success</pre>: A boolean value indicating whether the translation was successful (true or false).</li>
+            <li><pre>translated_text</pre>: The final translation result based on the requested `tr` parameter.</li>
+            <li><pre>amount_translate</pre>: The total number of available translations for the input text. This value indicates how many unique translations are returned by the API.</li>
+            <li><pre>credit</pre>: A string to credit the developer (in this case, "t.me/Yabes_Desu").</li>
+        </ul>
+
+        <h2>Notes</h2>
+        <div class="note">
+            <p><strong>Important:</strong> If the <pre>tr</pre> parameter is missing or requests a translation index that doesn't exist, the API defaults to returning <pre>tr=1</pre>.</p>
+            <p>If <pre>amount_translate</pre> is 1, it means only one translation is available for the given input. If it's greater than 1, you can use the <pre>tr</pre> parameter to access additional translations.</p>
+        </div>
+
+        <div class="api-test-section" style="background: #121212; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);">
+        <h2>Translation Test</h2>
+        <h4 style="color: #ff0; text-align: center; text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;">Server 2</h4>
+        <h4 style="color: #ff0; text-align: center; text-shadow: 0 0 10px #ff0, 0 0 20px #ff0;">Coming soon...</h4>
+         <div id="api-response" style="margin-top: 20px; padding: 15px; background: #1a1a1a; color: #0ff; border: 1px solid #0ff; border-radius: 5px; display: none;"></div>
+         </div>
+    <footer>
+        &copy; Copyright by <a href="https://t.me/Yabes_Desu">Yabes</a>
+    </footer>
+
+    <script>
+        document.getElementById('api-test-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            
+            const from = document.getElementById('from-language').value;
+            const to = document.getElementById('to-language').value;
+            const text = document.getElementById('text-input').value;
+
+            if (!text.trim()) {
+                alert('Please enter text to translate.');
+                return;
+            }
+
+            const url = `https://yabes-desu.serv00.net/translate/api?fr=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&text=${encodeURIComponent(text)}`;
+            
+            try {
+                const response = await fetch(url);
+                const result = await response.json();
+                
+                document.getElementById('api-response').style.display = 'block';
+                document.getElementById('api-response').textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('api-response').style.display = 'block';
+                document.getElementById('api-response').textContent = 'Error fetching API response!';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
