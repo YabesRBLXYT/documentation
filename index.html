@@ -96,7 +96,7 @@
               div.className = 'api-item';
               div.textContent = `${capitalizeFirstLetter(item)} API`; // Format kapital
               div.addEventListener('click', () => {
-                window.location.href = `/${item}`;
+                window.location.href = `documentation/${item}`;
               });
               apiContainer.appendChild(div);
             });
